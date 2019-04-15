@@ -4,6 +4,11 @@
 
 namespace mai {
 
+    // [peter] This seems a bit convoluted - in general its a good idea to map
+    // things against a key which you can immediately use to look them up e.g. a string.
+    // Consider using a "Drink" struct with the fields you need and mapping to the
+    // string name in the DrinksConfig class. (see: DrinkConfig.h comment)
+    // Example constructor: Drink(std::string name, int servoNum);
   namespace Drinks {
 
       enum class Type {
@@ -28,7 +33,11 @@ namespace mai {
       private:
         unsigned int m_pin_num;
       };
-      
+
+      // [peter] This is going to break if you replace drinks - this is basically
+      // hard-coding the available drinks.
+      // [peter] Also small point - inconsistent indentation size - use a single indentation
+      // size for all lines, e.g. 4 spaces or 2 spaces.
       static Type resolve_drink(const std::string &drink) {
         if (drink == "buckfast")
           return Drinks::Type::BUCKFAST;

@@ -6,6 +6,10 @@
 
 namespace mai {
 
+    // [peter] Consider having a map of Drink structs keyed on name, i.e. a map<std::string, Drink>,
+    // then have methods "getDrink", "addDrink" and "removeDrink" here - the caller then get the
+    // fields they want from the struct e.g. drinksConfig.getDrink("SomeDrink").getPosition().
+    // See also comments in Drinks.h.
     class DrinksConfig {
     public:
 

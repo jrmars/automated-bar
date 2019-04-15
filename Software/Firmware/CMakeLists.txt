@@ -11,7 +11,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # For creating python modules in c++
-execute_process(COMMAND bash -c "echo `python3-config --extension-suffix" OUTPUT_VARIABLE extension)
+execute_process(COMMAND bash -c "echo `python3-config --extension-suffix`" OUTPUT_VARIABLE extension)
 execute_process(COMMAND bash -c "echo `python3 -m pybind11 --includes`" OUTPUT_VARIABLE paths)
 
 # Logging
@@ -19,6 +19,7 @@ message( ${paths} )
 
 # Format Includes for use with CMake
 string(REGEX REPLACE "\n$" "" extension "${extension}")
+string(REPLACE ".so" "" extension ${extension})
 string(REPLACE "-I" "" paths ${paths})
 string(REPLACE " " ";" ARG_LIST ${paths})
 
@@ -35,17 +36,22 @@ include_directories(
 	${ARG_LIST} 		     
 )
 
-#add_library(DrinksConfig SHARED src/DrinksConfig.cpp)
 add_library(DrinksConfig SHARED src/DrinksConfig.cpp)
-add_library(extension${extension} SHARED src/PyDrinkServer.cpp)
+add_library(RevisedDrinkServer SHARED src/Drink.cpp src/DrinkStore.cpp include/RevisedDrinkServer.h include/ServoController.h src/RevisedDrinkServer.cpp src/ServoController.cpp)
+
+add_library(extension${extension} SHARED src/PyDrinkServer.cpp src/DrinksConfig.cpp src/DrinkServer.cpp src/ServoHandler.cpp lib/HX711/HX711.cpp)
+
 #add_library(DrinkServer SHARED src/DrinkServer.cpp)
 #add_library(ServoHandler SHARED src/ServoHandler.cpp)
+#add_library(HX711 SHARED lib/HX711/HX711.cpp)
 
 target_link_libraries(extension${extension}
 	DrinksConfig
 	#DrinkServer
-	#-lwiringPi
-	#-lwiringPiPca9685
+	#ServoHandler
+	#HX711
+	-lwiringPi
+	-lwiringPiPca9685
 )
 
 IF(CMAKE_BUILD_TYPE MATCHES Debug)

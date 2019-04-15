@@ -1,5 +1,17 @@
 .vscode/*
 
+assets/
+.idea
+
 # Build Dirs
 build/
+
+# IDE Files
+*.iml
+*.eclipse
+.idea/
+.vscode/
+
+# Python
+venv/
 
