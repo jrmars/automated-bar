@@ -8,12 +8,12 @@ HX711::HX711(int dout, int pd_sck, int gain) {
 	begin(dout, pd_sck, gain);
 }
 
-HX711::HX711() {
+/* HX711::HX711() {
 }
 
 HX711::~HX711() {
 }
-
+*/
 void HX711::begin(int dout, int pd_sck, int gain) {
 	PD_SCK = pd_sck;
 	DOUT = dout;
@@ -148,3 +148,4 @@ void HX711::power_down() {
 void HX711::power_up() {
 	digitalWrite(PD_SCK, LOW);
 }
+

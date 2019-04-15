@@ -96,9 +96,3 @@ Further details of the software can be found in the Software directory README: `
 [Joseph Marsden](https://github.com/jrmars)
 
 [Edward Mortimer](https://github.com/eddymj96)
-
-<!-- [peter] Usually for READMEs you would have build/installation/testing instructions -->
-
-<!-- [peter] Maybe add a list of technologies used here, -->
-<!-- [peter] e.g. "using Travis for CI" -->
-<!-- [peter] e.g. "using Google Test for Unit Testing" -->

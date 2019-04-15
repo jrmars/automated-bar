@@ -7,7 +7,7 @@ git clone git://git.drogon.net/wiringPi
 cd wiringPi
 ./build
 cd ../
-rm -rf wiringPi # `./build` will install the lib on the rPi.
+rm -rf wiringPi
 if [ -d "pca9685" ]; then
   rm -rf pca9685
 fi
